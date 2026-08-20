@@ -561,3 +561,7 @@ h1 .shim,h2 .shim,.shead h2 .shim,.bleed h2 .shim,.hero h1 .shim{
 .hart{-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 12%,rgba(0,0,0,.85) 26%,#000 40%);
       mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 12%,rgba(0,0,0,.85) 26%,#000 40%)}
 @media(min-width:1040px){ .hart{width:58%!important} }
+/* bright lifestyle band — scrim inverts so white type still reads */
+.bleed.light::after{background:linear-gradient(180deg,rgba(0,0,0,.30),rgba(0,0,0,.62))}
+.bleed.light h2,.bleed.light p{text-shadow:0 2px 26px rgba(0,0,0,.75)}
+.bleed.light p{color:#EAE6DF}
