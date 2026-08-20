@@ -601,7 +601,7 @@ h1 .shim,h2 .shim,.shead h2 .shim,.bleed h2 .shim,.hero h1 .shim{
 .marq{border-top:1px solid rgba(201,168,96,.22);border-bottom:1px solid rgba(201,168,96,.22)}
 
 /* hero art crop for glam-couple (couple sits right-of-centre in source) */
-@media(min-width:1040px){ .hero .hart:not(.pg){object-position:64% 42%!important} }
+@media(min-width:1040px){ .hero .hart:not(.pg){object-position:66% 34%!important} }
 
 /* gallery cards now use <img>, not <video> */
 .gal .c img{width:100%;height:100%;object-fit:cover;display:block;
@@ -641,3 +641,7 @@ h1.shim,h2.shim,.shead h2.shim,.bleed h2.shim{
   .bleed:has(img.bg.shiftr)::after{background:linear-gradient(180deg,rgba(0,0,0,.58) 0%,rgba(0,0,0,.80) 38%,rgba(0,0,0,.90) 100%)}
   .bleed:has(img.bg.shiftr) p{color:#E6E1D8}
 }
+
+/* keep the nav legible over any hero photograph */
+#nav::before{content:"";position:absolute;left:0;right:0;top:0;height:210%;z-index:-1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(10,9,8,.88) 0%,rgba(10,9,8,.62) 42%,rgba(10,9,8,.22) 74%,rgba(10,9,8,0) 100%)}
