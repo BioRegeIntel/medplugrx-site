@@ -557,3 +557,7 @@ h1 .shim,h2 .shim,.shead h2 .shim,.bleed h2 .shim,.hero h1 .shim{
 }
 /* .hero is a flex container — its .wrap must span, not shrink to content */
 .hero>.wrap{flex:1 1 auto;width:100%;max-width:1220px;margin:0 auto}
+/* feather the photo's left edge so it dissolves into the copy column */
+.hart{-webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 12%,rgba(0,0,0,.85) 26%,#000 40%);
+      mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 12%,rgba(0,0,0,.85) 26%,#000 40%)}
+@media(min-width:1040px){ .hart{width:58%!important} }
