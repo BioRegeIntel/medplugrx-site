@@ -509,3 +509,11 @@ h1 .shim,h2 .shim,.shead h2 .shim,.bleed h2 .shim,.hero h1 .shim{
 
 /* full-bleed bands must actually reach both edges */
 .bleed img.bg,.bleed video.bg{left:-14%;right:-14%;width:128%;max-width:none}
+
+/* keep the figure entirely clear of the wordmark at every desktop width */
+.hart{object-position:100% 50%;opacity:.82}
+.hero::before{background:linear-gradient(100deg,#000 0%,#000 40%,rgba(0,0,0,.94) 52%,rgba(0,0,0,.62) 68%,rgba(0,0,0,.18) 86%,transparent 100%)}
+@media(min-width:1040px) and (max-width:1400px){
+  .hero-in{max-width:540px}
+  .hero h1{font-size:clamp(50px,6.4vw,92px)}
+}
