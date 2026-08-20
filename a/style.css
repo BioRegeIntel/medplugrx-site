@@ -581,3 +581,15 @@ h1 .shim,h2 .shim,.shead h2 .shim,.bleed h2 .shim,.hero h1 .shim{
   .hero .cta{justify-content:center!important}
   .bleed.light{min-height:360px}
 }
+
+/* interior page headers: full-bleed photo behind a centred title block */
+.hart.pg{position:absolute;inset:0;left:0!important;right:0!important;width:100%!important;height:100%!important;
+  object-fit:cover;object-position:center 40%;opacity:.42!important;
+  -webkit-mask-image:none!important;mask-image:none!important}
+.hero.short::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.60) 45%,rgba(0,0,0,.88) 100%)!important}
+@media(max-width:1039px){
+  .hero.short{display:flex}
+  .hart.pg{height:100%!important;min-height:0;opacity:.34!important;object-position:center 38%}
+  .hero.short .hero-in{padding:120px 0 76px!important}
+}
