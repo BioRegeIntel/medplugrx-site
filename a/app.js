@@ -75,19 +75,17 @@ setTimeout(()=>pre.remove(),4600);}
 
 /* real vesicles, cut from the source imagery, drifting independently.
    drawn additively so their black surround disappears completely. */
-const SPR=[];let SPRN=0;
-for(let i=0;i<8;i++){const im=new Image();im.src='a/ves'+i+'.jpg';
- im.onload=()=>{SPRN++};SPR.push(im);}
+const SPR=[];let SPRN=1;   /* vesicle sprites retired */
 
 function field(cv,opt){
  const cx=cv.getContext('2d');let V=[],D=[],W=0,H=0,mx=0,my=0;
- const CFG=Object.assign({den:20,min:26,max:58,rmin:26,rmax:120,clear:1,dust:1},opt||{});
+ const CFG=Object.assign({den:20,min:26,max:58,rmin:26,rmax:120,clear:1,dust:0.40},opt||{});
  function size(){W=cv.offsetWidth;H=cv.offsetHeight;
   cv.width=Math.round(W*devicePixelRatio);cv.height=Math.round(H*devicePixelRatio);
   cx.setTransform(devicePixelRatio,0,0,devicePixelRatio,0,0);}
  function R(a,b){return a+Math.random()*(b-a)}
  function init(){
-  const n=CFG.max===0?0:Math.round(Math.min(CFG.max,Math.max(CFG.min,W/CFG.den)));
+  const n=0;   /* no cell sprites */
   V=[];for(let i=0;i<n;i++){const z=Math.pow(Math.random(),1.45);
    V.push({s:(Math.random()*8)|0,x:R(-.08,1.08)*W,y:R(-.08,1.08)*H,z:z,
     r:CFG.rmin+z*(CFG.rmax-CFG.rmin),
@@ -113,23 +111,6 @@ function field(cv,opt){
    cx.globalAlpha=d.a*(.55+.45*Math.sin(t*.0015+d.ph))*clear(d.x,d.y);
    cx.fillStyle='#F5E9C4';cx.beginPath();
    cx.arc(d.x+mx*8,d.y+my*6,d.r,0,6.2832);cx.fill();}
-  V.sort((a,b)=>a.z-b.z);
-  for(const p of V){
-   p.x+=p.vx;p.y+=p.vy;p.rot+=p.vr;
-   const m=p.r*1.4;
-   if(p.y<-m)p.y=H+m;if(p.y>H+m)p.y=-m;
-   if(p.x<-m)p.x=W+m;if(p.x>W+m)p.x=-m;
-   const x=p.x+Math.sin(t*p.sw+p.ph)*p.am+mx*p.z*24;
-   const y=p.y+Math.cos(t*p.sw*.8+p.ph)*p.am*.6+my*p.z*17;
-   const sc=p.r*(.93+.07*Math.sin(t*.0009+p.ph));
-   const al=p.a*clear(x,y);
-   if(al<.02)continue;
-   const img=SPR[p.s];if(!img.complete||!img.naturalWidth)continue;
-   cx.globalAlpha=al;
-   cx.save();cx.translate(x,y);cx.rotate(p.rot);
-   cx.drawImage(img,-sc,-sc,sc*2,sc*2);
-   cx.restore();
-  }
   cx.globalAlpha=1;cx.globalCompositeOperation='source-over';
   requestAnimationFrame(draw);
  }
@@ -141,13 +122,13 @@ const cv=document.getElementById('field');
 const HOME=/(?:^|\/)(?:index\.html)?$/.test(location.pathname.replace(/\/+$/,'/'))
         || /index\.html$/.test(location.pathname);
 if(cv)field(cv, HOME
-  ? {den:26,min:18,max:34,rmin:26,rmax:112,clear:1,dust:1}   // the home hero
-  : {den:40,min:0,max:0,rmin:0,rmax:0,clear:1,dust:1.4});    // interior: drift only
+  ? {den:26,min:18,max:34,rmin:26,rmax:112,clear:1,dust:0.40}   // the home hero
+  : {den:40,min:0,max:0,rmin:0,rmax:0,clear:1,dust:0.55});    // interior: drift only
 document.querySelectorAll('canvas.bfield').forEach(c=>{
  const dense=c.classList.contains('dense');
  field(c, dense
-  ? {den:20,min:22,max:44,rmin:24,rmax:126,clear:1,dust:1}     // it IS the background
-  : {den:34,min:12,max:26,rmin:20,rmax:78,clear:0,dust:.5});   // a layer over footage
+  ? {den:20,min:22,max:44,rmin:24,rmax:126,clear:1,dust:0.40}     // it IS the background
+  : {den:34,min:12,max:26,rmin:20,rmax:78,clear:0,dust:0.30});   // a layer over footage
 });
 
 
