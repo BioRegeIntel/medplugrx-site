@@ -593,3 +593,9 @@ h1 .shim,h2 .shim,.shead h2 .shim,.bleed h2 .shim,.hero h1 .shim{
   .hart.pg{height:100%!important;min-height:0;opacity:.34!important;object-position:center 38%}
   .hero.short .hero-in{padding:120px 0 76px!important}
 }
+
+/* marquee legibility — the city and accreditation tickers were too dim to read */
+.marq .track b{color:#D3CCBE!important;font-size:11.5px!important;letter-spacing:.30em!important;
+  font-weight:400;opacity:1!important}
+.marq .track i{color:rgba(201,168,96,.72)!important;opacity:1!important}
+.marq{border-top:1px solid rgba(201,168,96,.22);border-bottom:1px solid rgba(201,168,96,.22)}
