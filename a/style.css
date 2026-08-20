@@ -142,7 +142,7 @@ section{padding:64px 0;position:relative}
 .bleed img.bg{position:absolute;inset:-14% 0;width:128%;height:128%;left:-14%;object-fit:cover;opacity:1;will-change:transform}
 .bleed video.bg{position:absolute;inset:-14% 0;width:128%;height:128%;left:-14%;object-fit:cover;opacity:1;will-change:transform}
 .bleed::after{content:"";position:absolute;inset:0;z-index:1;
-background:linear-gradient(180deg,rgba(0,0,0,.55) 0,rgba(0,0,0,.18) 42%,rgba(0,0,0,.80) 100%)}
+background:linear-gradient(180deg,rgba(0,0,0,.40) 0,rgba(0,0,0,.10) 42%,rgba(0,0,0,.70) 100%)}
 .bleed .inner{position:relative;z-index:4;text-align:center;padding:0 30px}
 .bleed h2{font-size:clamp(32px,5.4vw,68px);font-weight:400;letter-spacing:.05em;margin:22px 0 22px;line-height:1.12}
 .bleed p{max-width:660px;margin:0 auto;color:#D4CEC4;font-size:16.5px;line-height:1.9}
@@ -562,7 +562,7 @@ h1 .shim,h2 .shim,.shead h2 .shim,.bleed h2 .shim,.hero h1 .shim{
       mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.35) 12%,rgba(0,0,0,.85) 26%,#000 40%)}
 @media(min-width:1040px){ .hart{width:58%!important} }
 /* bright lifestyle band — scrim inverts so white type still reads */
-.bleed.light::after{background:linear-gradient(180deg,rgba(0,0,0,.30),rgba(0,0,0,.62))}
+.bleed.light::after{background:linear-gradient(180deg,rgba(0,0,0,.22),rgba(0,0,0,.52))}
 .bleed.light h2,.bleed.light p{text-shadow:0 2px 26px rgba(0,0,0,.75)}
 .bleed.light p{color:#EAE6DF}
 
@@ -584,14 +584,16 @@ h1 .shim,h2 .shim,.shead h2 .shim,.bleed h2 .shim,.hero h1 .shim{
 
 /* interior page headers: full-bleed photo behind a centred title block */
 .hart.pg{position:absolute;inset:0;left:0!important;right:0!important;width:100%!important;height:100%!important;
-  object-fit:cover;object-position:center 40%;opacity:.42!important;
+  object-fit:cover;object-position:center 40%;opacity:.74!important;
   -webkit-mask-image:none!important;mask-image:none!important}
 .hero.short::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
-  background:linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.60) 45%,rgba(0,0,0,.88) 100%)!important}
+  background:linear-gradient(90deg,rgba(0,0,0,.90) 0%,rgba(0,0,0,.82) 32%,rgba(0,0,0,.48) 54%,rgba(0,0,0,.20) 76%,rgba(0,0,0,.12) 100%),
+             linear-gradient(180deg,rgba(0,0,0,.55) 0%,rgba(0,0,0,0) 26%,rgba(0,0,0,0) 70%,rgba(0,0,0,.62) 100%)!important}
 @media(max-width:1039px){
   .hero.short{display:flex}
-  .hart.pg{height:100%!important;min-height:0;opacity:.34!important;object-position:center 38%}
+  .hart.pg{height:100%!important;min-height:0;opacity:.62!important;object-position:center 38%}
   .hero.short .hero-in{padding:120px 0 76px!important}
+  .hero.short::before{background:linear-gradient(180deg,rgba(0,0,0,.58) 0%,rgba(0,0,0,.60) 45%,rgba(0,0,0,.84) 100%)!important}
 }
 
 /* marquee legibility — the city and accreditation tickers were too dim to read */
@@ -627,7 +629,7 @@ h1.shim,h2.shim,.shead h2.shim,.bleed h2.shim{
   .bleed:has(img.bg.shiftr){justify-content:flex-start}
   .bleed:has(img.bg.shiftr) .inner{text-align:left;max-width:600px;padding-left:8%;padding-right:0}
   .bleed:has(img.bg.shiftr) .inner p{margin-left:0;margin-right:0;max-width:520px}
-  .bleed:has(img.bg.shiftr)::after{background:linear-gradient(90deg,rgba(0,0,0,.86) 0%,rgba(0,0,0,.72) 40%,rgba(0,0,0,.28) 68%,rgba(0,0,0,.18) 100%)}
+  .bleed:has(img.bg.shiftr)::after{background:linear-gradient(90deg,rgba(0,0,0,.82) 0%,rgba(0,0,0,.62) 40%,rgba(0,0,0,.18) 68%,rgba(0,0,0,.08) 100%)}
 }
 
 /* stat row: long marker strings were forcing the grid wider than the viewport */
@@ -638,10 +640,20 @@ h1.shim,h2.shim,.shead h2.shim,.bleed h2.shim{
   .stat .l{overflow-wrap:anywhere}
 }
 @media(max-width:1039px){
-  .bleed:has(img.bg.shiftr)::after{background:linear-gradient(180deg,rgba(0,0,0,.58) 0%,rgba(0,0,0,.80) 38%,rgba(0,0,0,.90) 100%)}
+  .bleed:has(img.bg.shiftr)::after{background:linear-gradient(180deg,rgba(0,0,0,.46) 0%,rgba(0,0,0,.70) 38%,rgba(0,0,0,.84) 100%)}
   .bleed:has(img.bg.shiftr) p{color:#E6E1D8}
 }
 
 /* keep the nav legible over any hero photograph */
 #nav::before{content:"";position:absolute;left:0;right:0;top:0;height:210%;z-index:-1;pointer-events:none;
   background:linear-gradient(180deg,rgba(10,9,8,.88) 0%,rgba(10,9,8,.62) 42%,rgba(10,9,8,.22) 74%,rgba(10,9,8,0) 100%)}
+
+
+/* specimen COA sheet (Documented End To End) */
+.coabox{position:relative}
+.coabox svg.coa{display:block;width:100%;height:auto}
+
+/* portrait whose subject sits high in frame: drop the parallax overscan so the head is not clipped */
+.bleed img.bg.headroom{inset:0!important;left:0!important;width:100%!important;height:100%!important;
+  object-position:78% 12%!important}
+@media(max-width:1039px){ .bleed img.bg.headroom{object-position:72% 8%!important} }
