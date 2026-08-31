@@ -1,5 +1,5 @@
 
-:root{--void:#000000;--ink:#020204;--panel:#07070A;--ivory:#F8F4EB;--muted:#8F8981;
+:root{--void:#000000;--ink:#020204;--panel:#07070A;--ivory:#F8F4EB;--muted:#A9A39A;
 --gold:#C9A860;--gl:#F5E9C4;--gd:#7A5A21;--hair:rgba(201,168,96,.17)}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
@@ -8,7 +8,7 @@ font-family:"Avenir Next","Helvetica Neue",Helvetica,Arial,sans-serif;-webkit-fo
 img,video{max-width:100%}
 .serif{font-family:Didot,"Bodoni 72","Playfair Display",Georgia,serif}
 .wrap{max-width:1260px;margin:0 auto;padding:0 34px;position:relative;z-index:3}
-.eyebrow{font-size:10px;letter-spacing:.5em;text-transform:uppercase;color:var(--gold)}
+.eyebrow{font-size:11.5px;letter-spacing:.42em;text-transform:uppercase;color:var(--gold)}
 .shim{background:linear-gradient(100deg,#8A6A2C 0%,#F7EDD0 36%,#C9A860 54%,#8A6A2C 100%);
 background-size:230% 100%;-webkit-background-clip:text;background-clip:text;
 -webkit-text-fill-color:transparent;animation:sh 8s linear infinite}
@@ -256,7 +256,7 @@ border-color:rgba(201,168,96,.6);background:rgba(201,168,96,.05)}
 footer{padding:62px 0 46px;font-size:12px;color:#6A665F}
 footer .cols{display:grid;grid-template-columns:1.9fr 1fr 1fr 1fr 1.15fr;gap:40px;margin-bottom:52px}
 footer h4{font-size:9.5px;letter-spacing:.32em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
-footer a{color:#8F8981;text-decoration:none;display:block;padding:6px 0;transition:color .3s}
+footer a{color:#A9A39A;text-decoration:none;display:block;padding:6px 0;transition:color .3s}
 footer a:hover{color:var(--gold)}
 .legal{border-top:1px solid var(--hair);padding-top:30px;line-height:1.9;font-size:11px;color:#5A5750}
 
@@ -337,14 +337,14 @@ section{padding:118px 0}
 .prod{background:transparent;border:1px solid rgba(201,168,96,.14);border-radius:0;box-shadow:none}
 .prod .body{padding:40px 34px}
 .prod h3{font-size:26px;letter-spacing:.03em}
-.prod .tag{font-size:9px;letter-spacing:.4em;color:#7E786F}
+.prod .tag{font-size:9px;letter-spacing:.4em;color:#9E988E}
 .prod .type{font-size:10px;letter-spacing:.3em}
-.prod ul li{font-size:12.5px;color:#95908A;padding:9px 0;border-bottom:1px solid rgba(201,168,96,.07)}
+.prod ul li{font-size:12.5px;color:#ABA59C;padding:9px 0;border-bottom:1px solid rgba(201,168,96,.07)}
 .prod ul li:last-child{border-bottom:none}
 
 /* stats band: oversized numerals, thin */
 .stat .n{font-size:clamp(38px,4.6vw,64px);font-weight:400}
-.stat .l{font-size:9px;letter-spacing:.34em;color:#7E786F;margin-top:10px}
+.stat .l{font-size:9px;letter-spacing:.34em;color:#9E988E;margin-top:10px}
 .stats .wrap{padding-top:12px;padding-bottom:12px}
 
 /* nav: quieter, smaller, wider */
@@ -353,20 +353,20 @@ nav .wrap{height:92px}
 
 /* marquee: restrained */
 .marq{padding:0;border-top:1px solid rgba(201,168,96,.10);border-bottom:1px solid rgba(201,168,96,.10)}
-.marq .track b{font-size:10px;letter-spacing:.32em;color:#6E6960}
+.marq .track b{font-size:10px;letter-spacing:.32em;color:#A09A90}
 .marq .track i{color:rgba(201,168,96,.35)}
 
 /* spec table: editorial rows */
 .spec{background:transparent;border:none;border-top:1px solid rgba(201,168,96,.18)}
 .spec .row{padding:20px 6px;border-bottom:1px solid rgba(201,168,96,.09)}
-.spec .k{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#8F8981}
+.spec .k{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:#A9A39A}
 .spec .v{color:#CEC8BE}
 
 /* footer: set like a masthead colophon */
 footer{padding:96px 0 44px}
 footer .legal{font-size:10px;line-height:2;color:#5E594F;margin-top:44px;
 padding-top:28px;border-top:1px solid rgba(201,168,96,.09)}
-footer h4{font-size:9px;letter-spacing:.4em;color:#7E786F}
+footer h4{font-size:9px;letter-spacing:.4em;color:#9E988E}
 footer a{font-size:12.5px}
 
 /* kill remaining glow vocabulary — hairlines carry the luxury */
@@ -383,7 +383,7 @@ padding:34px 6px;cursor:pointer;list-style:none;transition:background .4s}
 .art summary::-webkit-details-marker{display:none}
 .art summary:hover{background:rgba(201,168,96,.03)}
 .art .ah{flex:1}
-.art .tag{font-size:9px;letter-spacing:.4em;color:#7E786F;text-transform:uppercase;margin-bottom:12px}
+.art .tag{font-size:9px;letter-spacing:.4em;color:#9E988E;text-transform:uppercase;margin-bottom:12px}
 .art h3{font-size:clamp(19px,2.2vw,27px);font-weight:400;letter-spacing:.02em;line-height:1.3;margin:0 0 10px}
 .art .type{font-size:10px;letter-spacing:.26em;color:var(--gold);text-transform:uppercase}
 .art .tw{font-family:Didot,Georgia,serif;font-size:30px;color:var(--gold);line-height:1;
@@ -392,7 +392,7 @@ flex-shrink:0;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
 .art .ab{padding:0 6px 44px;max-width:760px}
 .art .ab p{color:#B8B2A8;font-size:15px;line-height:2;margin:6px 0 22px}
 .art .ab ul{list-style:none;margin:0 0 30px}
-.art .ab ul li{font-size:13px;color:#95908A;padding:11px 0 11px 26px;position:relative;
+.art .ab ul li{font-size:13px;color:#ABA59C;padding:11px 0 11px 26px;position:relative;
 border-bottom:1px solid rgba(201,168,96,.07)}
 .art .ab ul li::before{content:"";position:absolute;left:2px;top:19px;width:12px;height:1px;background:var(--gold)}
 
@@ -400,7 +400,7 @@ border-bottom:1px solid rgba(201,168,96,.07)}
 /* ═══ interactive system: porcelain, not gold ═══
    gold stays where it is ornament — the mark, hairlines, ghost numerals.
    everything you CLICK is bone-white. */
-:root{--bone:#EDE9E0;--bone-dim:#9A958D}
+:root{--bone:#EDE9E0;--bone-dim:#B0AAA1}
 
 .btn{border:1px solid rgba(237,233,224,.42);color:var(--bone)}
 .btn::before{background:var(--bone)}
@@ -434,9 +434,9 @@ float:left;padding:8px 12px 0 0;color:var(--gl)}
 .cites{margin:52px 0 0;padding-top:30px;border-top:1px solid rgba(201,168,96,.16)}
 .cites .ch{font-size:10px;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
 .cites ol{margin:0 0 0 18px}
-.cites li{font-size:12.5px;color:#8F8981;line-height:1.8;padding:5px 0}
+.cites li{font-size:12.5px;color:#A9A39A;line-height:1.8;padding:5px 0}
 .anote{margin-top:40px;padding:22px 24px;border:1px solid rgba(201,168,96,.10);
-font-size:11.5px;line-height:1.9;color:#6E6960}
+font-size:11.5px;line-height:1.9;color:#A09A90}
 
 @media(max-width:1000px){.cols{grid-template-columns:1fr 1fr 1fr;gap:34px}}
 @media(max-width:640px){.cols{grid-template-columns:1fr 1fr}}
