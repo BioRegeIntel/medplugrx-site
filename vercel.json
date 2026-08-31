@@ -1,12 +1,44 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
-    { "source": "/coamedplug",   "destination": "/coamedplug.html" },
-    { "source": "/coapens",      "destination": "/coapens.html" },
-    { "source": "/coajungmoney", "destination": "/coajungmoney.html" }
+    {
+      "source": "/coamedplug",
+      "destination": "/coamedplug.html"
+    },
+    {
+      "source": "/coapens",
+      "destination": "/coapens.html"
+    },
+    {
+      "source": "/coajungmoney",
+      "destination": "/coajungmoney.html"
+    }
   ],
   "redirects": [
-    { "source": "/coa.html", "destination": "/coamedplug", "permanent": true },
-    { "source": "/coa",      "destination": "/coamedplug", "permanent": true }
+    {
+      "source": "/coa.html",
+      "destination": "/coamedplug",
+      "permanent": true
+    },
+    {
+      "source": "/coa",
+      "destination": "/coamedplug",
+      "permanent": true
+    },
+    {
+      "source": "/jungmoney",
+      "destination": "/coajungmoney",
+      "permanent": true
+    },
+    {
+      "source": "/pens",
+      "destination": "/coapens",
+      "permanent": true
+    },
+    {
+      "source": "/medplug",
+      "destination": "/coamedplug",
+      "permanent": true
+    }
   ]
 }
