@@ -24,21 +24,6 @@
       "source": "/coa",
       "destination": "/coamedplug",
       "permanent": true
-    },
-    {
-      "source": "/jungmoney",
-      "destination": "/coajungmoney",
-      "permanent": true
-    },
-    {
-      "source": "/pens",
-      "destination": "/coapens",
-      "permanent": true
-    },
-    {
-      "source": "/medplug",
-      "destination": "/coamedplug",
-      "permanent": true
     }
   ]
 }
