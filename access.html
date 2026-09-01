@@ -77,21 +77,26 @@
 <div class="shead"><div class="eyebrow rv">Application</div>
 <h2 class="serif rv" data-d="1">Open An Account</h2>
 <p class="rv" data-d="2">Verification is typically completed within two business days.</p></div>
-<form class="form rv cin" onsubmit="event.preventDefault();this.innerHTML='<div style=&quot;text-align:center;padding:60px 20px&quot;><div class=&quot;eyebrow&quot;>Received</div><h3 class=&quot;serif&quot; style=&quot;font-size:30px;font-weight:400;margin:18px 0&quot;>Thank you</h3><p style=&quot;color:#A9A39A&quot;>Our team will verify your licensure and respond within two business days.</p></div>'">
-<div class="two"><div class="fr"><label>First Name</label><input required></div>
-<div class="fr"><label>Last Name</label><input required></div></div>
-<div class="two"><div class="fr"><label>Practice / Facility</label><input required></div>
-<div class="fr"><label>Specialty</label><select>
+<form class="form rv cin" data-endpoint="/api/access" data-form-type="application">
+<div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden">
+<label>Website<input name="mp_website" type="text" tabindex="-1" autocomplete="off"></label>
+<label>Company URL<input name="mp_company_url" type="text" tabindex="-1" autocomplete="off"></label></div>
+<div class="two"><div class="fr"><label>First Name</label><input name="firstName" required autocomplete="given-name"></div>
+<div class="fr"><label>Last Name</label><input name="lastName" required autocomplete="family-name"></div></div>
+<div class="two"><div class="fr"><label>Practice / Facility</label><input name="practice" required autocomplete="organization"></div>
+<div class="fr"><label>Specialty</label><select name="specialty">
 <option>Plastic Surgery</option><option>Facial Plastic Surgery</option><option>Dermatology</option>
 <option>Regenerative Medicine</option><option>Longevity / Anti-Aging</option><option>Orthopedics</option>
 <option>Other</option></select></div></div>
-<div class="two"><div class="fr"><label>State Medical License No.</label><input required></div>
-<div class="fr"><label>State of Licensure</label><input required></div></div>
-<div class="two"><div class="fr"><label>Email</label><input type="email" required></div>
-<div class="fr"><label>Phone</label><input type="tel"></div></div>
-<div class="fr"><label>City</label><input placeholder="Beverly Hills, Dubai, Miami…"></div>
-<div class="fr"><label>Preparations of Interest</label><textarea rows="4" placeholder="ExCyte, CytoCord, Altogex — and anticipated monthly volume"></textarea></div>
-<button class="btn btn-solid" style="border:1px solid var(--gold);cursor:pointer;width:100%;padding:18px">Submit Application</button>
+<div class="two"><div class="fr"><label>NPI Number</label><input name="npi" inputmode="numeric" pattern="[0-9]{10}" placeholder="10 digits" title="Ten-digit National Provider Identifier"></div>
+<div class="fr"><label>State of Licensure</label><input name="licenseState" required></div></div>
+<div class="two"><div class="fr"><label>Email</label><input name="email" type="email" required autocomplete="email"></div>
+<div class="fr"><label>Phone</label><input name="phone" type="tel" autocomplete="tel"></div></div>
+<div class="fr"><label>City</label><input name="city" placeholder="Beverly Hills, Dubai, Miami…"></div>
+<div class="fr"><label>Preparations of Interest</label><textarea name="interest" rows="4" placeholder="ExCyte, CytoCord, Altogex — and anticipated monthly volume"></textarea></div>
+<div class="fr"><label class="checkline"><input type="checkbox" name="noPhi" value="yes" required><span>I confirm this application contains no patient names, diagnoses, medical records or other patient health information.</span></label></div>
+<button type="submit" class="btn btn-solid" style="border:1px solid var(--gold);cursor:pointer;width:100%;padding:18px">Submit Application</button>
+<p class="formnote">We verify licensure through the NPI registry and your state board. We ask for your NPI rather than a state licence number — it is the public identifier built for this check. Your details are handled per our <a href="privacy.html">Privacy Notice</a>. Products are supplied for research use only.</p>
 </form></div></section><div class="bleed">
 <img class="bg" src="a/suite.jpg" alt="" aria-hidden="true">
 <svg class="wm" width="580" height="580" viewBox="-92 -92 184 184"><use href="#weave"/></svg>
@@ -108,7 +113,7 @@
 <p style="max-width:330px;line-height:1.85">Advanced biologics for the physician who does not compromise. Sourced and processed in the United States, supplied direct to licensed physicians.</p></div>
 <div><h4>Products</h4><a href="products.html">ExCyte™</a><a href="products.html">CytoCord™</a><a href="products.html">Altogex™</a></div>
 <div><h4>Company</h4><a href="the-plug.html">The Plug</a><a href="standards.html">Standards</a><a href="rejuvenation.html">Rejuvenation</a><a href="research.html">Research</a></div>
-<div><h4>Access</h4><a href="access.html">Physician Account</a><a href="standards.html">Documentation</a><a href="access.html">Request Access</a></div>
+<div><h4>Access</h4><a href="access.html">Physician Account</a><a href="refer.html">Refer a Colleague</a><a href="standards.html">Documentation</a><a href="privacy.html">Privacy Notice</a><a href="terms.html">Terms of Use</a></div>
 <div><h4>Contact</h4>
 <a href="mailto:info@medplugrx.com">info@medplugrx.com</a>
 <span style="display:block;margin-top:10px;color:#A9A39A;font-size:13px;line-height:1.8">Houston, Texas<br>United States</span></div>
@@ -117,4 +122,5 @@
 Distribution restricted to licensed physicians and qualified facilities. Products supplied with per-lot certificates of analysis and donor eligibility documentation maintained in accordance with 21 CFR Part 1271, Subpart C.<br>
 No statement on this site has been evaluated by the Food and Drug Administration. Clinical application, indication and patient selection remain the sole responsibility of the treating physician.</div>
 </div></footer>
-<script src="a/app.js"></script></body></html>
+<script src="a/app.js"></script><script src="a/forms.js" defer></script>
+</body></html>
