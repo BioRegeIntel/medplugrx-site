@@ -28,6 +28,10 @@
     {
       "source": "/peptides/packaging",
       "destination": "/peptides/packaging.html"
+    },
+    {
+      "source": "/peptides/facts",
+      "destination": "/peptides/facts.html"
     }
   ],
   "redirects": [
