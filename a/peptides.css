@@ -119,3 +119,35 @@
 /* photo beside copy, no overlay */
 .imgbox img{width:100%;display:block}
 .hart.pg.vt{object-position:60% 0%!important}
+
+/* ═══ luxury pass: readable ivory type, and no section left on bare black ═══ */
+.tcard p,.psplit p,.shead p,.kv .v,.steps li,.fam .names,.panel p,.prod p,.chip,.tbl td,.bleed p,.hero p.lede,.divsplit .dd{color:#DAD5CB}
+.tcard p,.prod p{font-size:15px}
+.steps li{color:#E6E1D8}
+.fine{color:#A39D93}
+.tcard .tn,.eyebrow,.kv .k,.fam .fh .eyebrow,.tbl th{color:#D9B86A}
+.kv .k,.tbl.cmp td.rk,.chiplab,.steps h4{color:#B9B2A7}
+.tcard h3,.psplit h2,.shead h2,.fam .fh .ct,.tier h3{color:#FBF8F1}
+.divsplit .dd{color:#E3DED4}
+
+/* textured sections: live gold field behind the copy, plus a slow ghost line of type */
+section.lux{position:relative;overflow:hidden;background:#000}
+section.lux>canvas.bfield{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.9}
+section.lux>canvas.gflow{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:.34}
+section.lux::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:radial-gradient(120% 80% at 50% 50%,rgba(201,168,96,.075) 0%,rgba(0,0,0,0) 62%),
+             linear-gradient(180deg,#000 0%,rgba(0,0,0,0) 14%,rgba(0,0,0,0) 86%,#000 100%)}
+section.lux .ghost{position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);z-index:1;pointer-events:none;
+  overflow:hidden;white-space:nowrap;font-family:Didot,"Bodoni 72","Playfair Display",Georgia,serif;
+  font-size:clamp(120px,17vw,260px);line-height:1;letter-spacing:.04em;
+  color:transparent;-webkit-text-stroke:1px rgba(201,168,96,.16);opacity:.9}
+section.lux .ghost span{display:inline-block;padding-right:.6em;animation:ghostrun 90s linear infinite}
+section.lux .ghost.rev span{animation-direction:reverse}
+@keyframes ghostrun{to{transform:translateX(-50%)}}
+section.lux>.wrap{position:relative;z-index:3}
+section.lux.photo>img.tex{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;opacity:.20;
+  -webkit-mask-image:linear-gradient(180deg,transparent,#000 25%,#000 75%,transparent);mask-image:linear-gradient(180deg,transparent,#000 25%,#000 75%,transparent)}
+.tcard{background:rgba(0,0,0,.55);backdrop-filter:blur(6px);border-color:rgba(201,168,96,.24)}
+.panel{background:rgba(0,0,0,.55);backdrop-filter:blur(6px)}
+.final{position:relative;overflow:hidden}
+@media(prefers-reduced-motion:reduce){section.lux .ghost span{animation:none}}
