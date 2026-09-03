@@ -687,40 +687,46 @@ h1.shim,h2.shim,.shead h2.shim,.bleed h2.shim{
 .doc .eff{font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:#8E8880;margin-bottom:40px}
 .doc strong{color:var(--bone);font-weight:500}
 
-/* ═══ division switch: two image panels inside the header — Regenerative Medicine | Peptides ═══ */
-nav{display:flex;flex-direction:column}
+/* ═══ division split: the header IS the choice — two very large panels, Regenerative Medicine | Peptides ═══ */
 nav>.wrap{width:100%}
 nav .wrap{gap:18px}
 nav ul{gap:24px}
 nav a.lk{white-space:nowrap}
 nav .btn{white-space:nowrap;padding:14px 22px;letter-spacing:.26em;text-indent:.26em;flex:0 0 auto}
-.divbar{display:grid;grid-template-columns:1fr 1fr;height:84px;border-top:1px solid rgba(201,168,96,.14);
-  border-bottom:1px solid rgba(201,168,96,.18);background:#000;position:relative}
-.divbar::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(201,168,96,.35);z-index:3}
-.divbar .dp{position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;
-  text-decoration:none;color:#A9A39A;isolation:isolate}
-.divbar .dp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
-  opacity:.28;filter:saturate(.35);transform:scale(1.02);transition:opacity .6s,filter .6s,transform 1.2s cubic-bezier(.2,.8,.2,1)}
-.divbar .dp::after{content:"";position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,.25) 50%,rgba(0,0,0,.65))}
-.divbar .dl{position:relative;z-index:2;font-family:Didot,"Bodoni 72","Playfair Display",Georgia,serif;
-  font-size:24px;letter-spacing:.09em;line-height:1;white-space:nowrap;text-shadow:0 2px 18px rgba(0,0,0,.9);
-  padding-bottom:6px;border-bottom:1px solid transparent;transition:color .4s,border-color .4s}
-.divbar .dk{position:relative;z-index:2;display:block;font-size:9px;letter-spacing:.42em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:8px;text-align:center;opacity:.9}
-.divbar .dp>span.tx{position:relative;z-index:2;text-align:center}
-.divbar .dp:hover img{opacity:.7;filter:saturate(.9);transform:scale(1.06)}
-.divbar .dp:hover{color:#F4F1EB}
-.divbar .dp.on{color:#F4F1EB}
-.divbar .dp.on img{opacity:.9;filter:none}
-.divbar .dp.on .dl{border-bottom-color:var(--gold)}
-.divbar .dp.reg img{object-position:50% 50%}
-.divbar .dp.pep img{object-position:70% 50%}
 @media(max-width:1100px){ nav ul{gap:18px} nav a.lk{font-size:9px;letter-spacing:.22em} nav .btn{padding:13px 16px;letter-spacing:.2em;text-indent:.2em} }
-@media(max-width:960px){ nav ul{inset:auto 0 auto 0;top:92px;transform:translateY(calc(-100% - 110px));z-index:5} nav ul.open{transform:none} }
-@media(max-width:600px){ .divbar{height:66px} .divbar .dl{font-size:16px;letter-spacing:.05em} .divbar .dk{font-size:7.5px;letter-spacing:.3em;margin-bottom:5px} }
-/* the fixed header is taller now — push hero copy down to match */
-.hero-in{padding-top:216px}
-@media(min-width:1040px){ .hero-in{padding-top:224px!important} }
-@media(max-width:1039px){ .hero:not(.short) .hero-in{padding-top:190px!important} .hero.short .hero-in{padding-top:196px!important} }
-#nav::before{height:150%}
+.divsplit{display:grid;grid-template-columns:1fr 1fr;height:78vh;min-height:560px;background:#000;position:relative;
+  border-bottom:1px solid rgba(201,168,96,.22)}
+.divsplit.short{height:52vh;min-height:400px}
+.divsplit::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;background:rgba(201,168,96,.45);z-index:4}
+.divsplit .dp{position:relative;display:flex;align-items:flex-end;overflow:hidden;text-decoration:none;color:#E9E4DA;isolation:isolate}
+.divsplit .dp img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:0;
+  opacity:.62;filter:saturate(.6);transform:scale(1.02);transition:opacity .7s,filter .7s,transform 1.6s cubic-bezier(.2,.8,.2,1)}
+.divsplit .dp::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(0,0,0,.72) 0%,rgba(0,0,0,.05) 30%,rgba(0,0,0,.05) 55%,rgba(0,0,0,.86) 100%)}
+.divsplit .tx{position:relative;z-index:2;padding:0 6% 9%;width:100%}
+.divsplit .dk{display:block;font-size:10px;letter-spacing:.46em;text-transform:uppercase;color:var(--gold);margin-bottom:18px}
+.divsplit .dl{display:block;font-family:Didot,"Bodoni 72","Playfair Display",Georgia,serif;font-size:clamp(34px,4.6vw,76px);
+  line-height:1.02;letter-spacing:.01em;color:#F4F1EB;text-shadow:0 2px 30px rgba(0,0,0,.9)}
+.divsplit .dd{display:block;margin-top:22px;font-size:13.5px;line-height:1.8;color:#BDB7AD;max-width:420px}
+.divsplit .go{display:inline-block;margin-top:28px;font-size:10px;letter-spacing:.34em;text-transform:uppercase;color:#F4F1EB;
+  padding-bottom:8px;border-bottom:1px solid rgba(201,168,96,.6);transition:color .35s,border-color .35s}
+.divsplit .dp:hover img{opacity:1;filter:none;transform:scale(1.07)}
+.divsplit .dp:hover .go{color:var(--gold);border-color:var(--gold)}
+.divsplit .dp.on img{opacity:1;filter:none}
+.divsplit .dp.on .go{color:var(--gold);border-color:var(--gold)}
+.divsplit .dp.on .tx::before{content:"You are here";position:absolute;top:-34px;left:6%;font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:rgba(201,168,96,.85)}
+.divsplit .dp.pep img{object-position:74% 50%}
+.divsplit .dp.reg img{object-position:50% 50%}
+@media(max-width:760px){
+  .divsplit{height:auto;min-height:0}
+  .divsplit .dp{min-height:46vh;padding-top:70px}
+  .divsplit .tx{padding:0 7% 34px}
+  .divsplit .dl{font-size:clamp(22px,7vw,34px)}
+  .divsplit .dd{display:none}
+  .divsplit .go{margin-top:16px}
+  .divsplit .dp.on .tx::before{display:none}
+}
+/* the split sits under the fixed bar; the page's own hero no longer needs the extra offset */
+.divsplit{padding:0!important}
+.hero-in{padding-top:132px}
+@media(min-width:1040px){ .hero-in{padding-top:140px!important} }
