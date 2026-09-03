@@ -39,6 +39,9 @@ DEFS = '''<div id="cursor"></div><div id="prog"></div>
 MENU = [("the-pen.html", "The Pen"), ("portfolio.html", "Portfolio"),
         ("manufacturing.html", "Manufacturing"), ("packaging.html", "Packaging"), ("facts.html", "Facts")]
 
+SPLIT_FULL = '<section class="divsplit" aria-label="Choose a division"><a class="dp reg" href="../index.html"><img src="../a/dna-helix.jpg" alt="" aria-hidden="true"><span class="tx"><span class="dk">Division 01</span><span class="dl">Regenerative Medicine</span><span class="dd">Umbilical-derived exosome and cellular preparations, counted and characterized per lot, supplied to a closed physician register.</span><span class="go">Enter Regenerative Medicine</span></span></a><a class="dp pep on" href="index.html"><img src="../a/pen-hero.jpg" alt="" aria-hidden="true"><span class="tx"><span class="dk">Division 02</span><span class="dl">Peptides</span><span class="dd">Seventy-three pharmaceutical-manufactured peptides, pre-filled in a certified injector pen. No vial, no reconstitution.</span><span class="go">Enter Peptides</span></span></a></section>\n'
+SPLIT_SHORT = '<section class="divsplit short" aria-label="Choose a division"><a class="dp reg" href="../index.html"><img src="../a/dna-helix.jpg" alt="" aria-hidden="true"><span class="tx"><span class="dk">Division 01</span><span class="dl">Regenerative Medicine</span><span class="dd">Umbilical-derived exosome and cellular preparations, counted and characterized per lot, supplied to a closed physician register.</span><span class="go">Enter Regenerative Medicine</span></span></a><a class="dp pep on" href="index.html"><img src="../a/pen-hero.jpg" alt="" aria-hidden="true"><span class="tx"><span class="dk">Division 02</span><span class="dl">Peptides</span><span class="dd">Seventy-three pharmaceutical-manufactured peptides, pre-filled in a certified injector pen. No vial, no reconstitution.</span><span class="go">Enter Peptides</span></span></a></section>\n'
+
 def nav(active):
     items = "".join(
         f'<li><a class="lk{" act" if f == active else ""}" href="{f}">{t}</a></li>' for f, t in MENU)
@@ -48,7 +51,7 @@ def nav(active):
 <ul id="menu">{items}</ul>
 <a href="../access.html" class="btn">Physician Access</a>
 <button id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
-</div><div class="divbar" aria-label="Choose a division"><a class="dp reg" href="../index.html"><img src="../a/dna-helix.jpg" alt="" aria-hidden="true"><span class="tx"><span class="dk">Division 01</span><span class="dl">Regenerative Medicine</span></span></a><a class="dp pep on" href="index.html"><img src="../a/pen-hero.jpg" alt="" aria-hidden="true"><span class="tx"><span class="dk">Division 02</span><span class="dl">Peptides</span></span></a></div></nav>'''
+</div></nav>'''
 
 FOOTER = '''<footer><div class="wrap"><div class="cols">
 <div><a class="brand" href="index.html" style="margin-bottom:20px">
@@ -151,7 +154,7 @@ def page_home():
     p = head("Med Plug RX Peptides — Pharmaceutical-Manufactured Peptides in a Certified Injector Pen",
              "73 peptides, pre-filled by a licensed pharmaceutical manufacturer and delivered in an ISO 13485 / EU MDR certified injector pen. Two device tiers, 0.01 mL per click, supplied to licensed physicians.",
              "index.html", og="pen-trio.jpg")
-    p += pre() + DEFS + nav("index.html")
+    p += pre() + DEFS + nav("index.html") + SPLIT_FULL
     p += f'''<div class="hero">
 <div class="hstack"></div><img class="hart pen" src="../a/pen-hero.jpg" alt="" aria-hidden="true"><div class="veil"></div><canvas id="field"></canvas><div class="sweep"></div>
 <div class="wrap"><div class="hero-in">
@@ -223,7 +226,7 @@ def page_pen():
     p = head("The Injector Pen — Two Device Tiers, One Dosing Platform | Med Plug RX Peptides",
              "Metal reusable and molded disposable injector pens on one dosing mechanism: 0.01 mL per click, 3 mL ISO 11608-2 cartridge, ISO 13485 and EU MDR certified, sixty independent accuracy measurements with zero failures.",
              "the-pen.html", og="pen-trio.jpg")
-    p += pre() + DEFS + nav("the-pen.html")
+    p += pre() + DEFS + nav("the-pen.html") + SPLIT_SHORT
     p += hero_short("pen-trio.jpg", "The Delivery Device", "Two device tiers.<br>One dosing platform.", "Reusable Metal &#183; Disposable Molded")
     p += f'''<div class="stats"><div class="wrap">
 <div class="stat rv lit"><div class="n serif shim">5</div><div class="l">Finishes in production</div></div>
@@ -306,7 +309,7 @@ def page_portfolio():
     p = head("The Portfolio — Seventy-Three Peptides, One Standard | Med Plug RX Peptides",
              "Seventy-three peptides supplied pre-filled from a licensed pharmaceutical manufacturer: metabolic and GLP-1, growth hormone secretagogues, repair and regenerative, melanocortins, neuroactive and longevity, immune and established actives.",
              "portfolio.html", og="pep-gown.jpg")
-    p += pre() + DEFS + nav("portfolio.html")
+    p += pre() + DEFS + nav("portfolio.html") + SPLIT_SHORT
     p += hero_short("pep-gown.jpg", "The Portfolio", "Seventy-three peptides,<br>one standard.", "Six Families &#183; Pre-Filled &#183; Licensed Manufacture")
     fam_html = ""
     for i, (name, names) in enumerate(FAMS):
@@ -338,7 +341,7 @@ def page_manufacturing():
     p = head("Manufacturing — Synthesis to Released Batch, Under One License | Med Plug RX Peptides",
              "Three tiers supply the peptide market; only one is a licensed pharmaceutical manufacturer. Grade A / ISO 5 aseptic fill, 0.22 µm sterilizing filtration, 99%+ purity per lot, QA batch release, US inspection and assembly, 2–8°C cold chain.",
              "manufacturing.html", og="iso5.jpg")
-    p += pre() + DEFS + nav("manufacturing.html")
+    p += pre() + DEFS + nav("manufacturing.html") + SPLIT_SHORT
     p += hero_short("iso5.jpg", "The Fill", "Synthesis to released batch,<br>under one license.", "Licensed Pharmaceutical Manufacture")
     p += f'''<div class="stats"><div class="wrap">
 <div class="stat rv lit"><div class="n serif shim">ISO 5</div><div class="l">Grade A aseptic filling</div></div>
@@ -385,7 +388,7 @@ def page_packaging():
     p = head("Packaging &amp; Market Position — A Retail Object, Not a Dispensing Container | Med Plug RX Peptides",
              "Rigid book-style box with magnetic flip lid, die-cut tray for the pen and needle tips, instructions printed inside the lid. How the Med Plug RX pen compares with cleared device suppliers and consumer accessories.",
              "packaging.html", og="pep-vanity.jpg")
-    p += pre() + DEFS + nav("packaging.html")
+    p += pre() + DEFS + nav("packaging.html") + SPLIT_SHORT
     p += hero_short("pep-vanity.jpg", "The Presentation", "A retail object,<br>not a dispensing container.", "Presentation &#183; Market Position", extra_cls=" vt")
     p += f'''<section><div class="wrap"><div class="psplit">
 <div><div class="eyebrow">The Box</div><h2 class="serif">Wrapped board.<br>Magnetic closure.</h2>
@@ -416,7 +419,7 @@ def page_facts():
     p = head("Facts — May a 503A Pharmacy Fill Cartridges and Dispense Them in Pens? | Med Plug RX Peptides",
              "A regulatory reference on container-closure format for compounded sterile preparations: what Section 503A actually conditions, why a cartridge-loaded pen is not a prefilled autoinjector, and how cartridge fill-finish is done under USP 797.",
              "facts.html", og="pen-hero.jpg")
-    p += pre() + DEFS + nav("facts.html")
+    p += pre() + DEFS + nav("facts.html") + SPLIT_SHORT
     p += hero_short("pen-wet.jpg", "Regulatory Reference", "May a 503A pharmacy fill cartridges<br>and dispense them in pens?", "Container-Closure Format &#183; Compounded Sterile Preparations")
     p += f'''<section><div class="wrap"><div class="psplit">
 <div><div class="eyebrow">Short Answer</div><h2 class="serif">Yes.</h2>
