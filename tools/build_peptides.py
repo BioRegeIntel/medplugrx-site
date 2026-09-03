@@ -37,26 +37,25 @@ DEFS = '''<div id="cursor"></div><div id="prog"></div>
 </defs></svg>'''
 
 MENU = [("the-pen.html", "The Pen"), ("portfolio.html", "Portfolio"),
-        ("manufacturing.html", "Manufacturing"), ("packaging.html", "Packaging")]
+        ("manufacturing.html", "Manufacturing"), ("packaging.html", "Packaging"), ("facts.html", "Facts")]
 
 def nav(active):
     items = "".join(
         f'<li><a class="lk{" act" if f == active else ""}" href="{f}">{t}</a></li>' for f, t in MENU)
-    return f'''<nav id="nav"><div class="divbar" aria-label="Choose a division"><a href="../index.html"><span class="dl">Regenerative Medicine</span></a><span class="dv"></span><a href="index.html" class="on"><span class="dl">Peptides</span></a></div>
-<div class="wrap">
+    return f'''<nav id="nav"><div class="wrap">
 <a class="brand" href="index.html"><svg width="34" height="34" viewBox="-92 -92 184 184"><use href="#weave"/></svg>
 <span class="nm serif">MED PLUG<em>RX</em></span></a>
 <ul id="menu">{items}</ul>
 <a href="../access.html" class="btn">Physician Access</a>
 <button id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
-</div></nav>'''
+</div><div class="divbar" aria-label="Choose a division"><a class="dp reg" href="../index.html"><img src="../a/dna-helix.jpg" alt="" aria-hidden="true"><span class="tx"><span class="dk">Division 01</span><span class="dl">Regenerative Medicine</span></span></a><a class="dp pep on" href="index.html"><img src="../a/pen-hero.jpg" alt="" aria-hidden="true"><span class="tx"><span class="dk">Division 02</span><span class="dl">Peptides</span></span></a></div></nav>'''
 
 FOOTER = '''<footer><div class="wrap"><div class="cols">
 <div><a class="brand" href="index.html" style="margin-bottom:20px">
 <svg width="44" height="44" viewBox="-92 -92 184 184"><use href="#weave"/></svg>
 <span class="serif" style="font-size:13px;letter-spacing:.30em">MED PLUG RX</span></a>
 <p style="max-width:330px;line-height:1.85">Pharmaceutical-manufactured peptides, delivered in a certified injector pen. Supplied direct to licensed physicians, with the documentation to match.</p></div>
-<div><h4>Peptides</h4><a href="the-pen.html">The Pen</a><a href="portfolio.html">Portfolio</a><a href="manufacturing.html">Manufacturing</a><a href="packaging.html">Packaging</a></div>
+<div><h4>Peptides</h4><a href="the-pen.html">The Pen</a><a href="portfolio.html">Portfolio</a><a href="manufacturing.html">Manufacturing</a><a href="packaging.html">Packaging</a><a href="facts.html">Facts</a></div>
 <div><h4>Documentation</h4><a href="../coamedplug">Peptide COA Archive</a><a href="../coapens">Pen COA Archive</a><a href="../coajungmoney">Jung Money COA Archive</a><a href="../standards.html">Standards</a></div>
 <div><h4>Access</h4><a href="../access.html">Physician Account</a><a href="../refer.html">Refer a Colleague</a><a href="../index.html">Regenerative Medicine</a><a href="../privacy.html">Privacy Notice</a><a href="../terms.html">Terms of Use</a></div>
 <div><h4>Contact</h4>
@@ -154,7 +153,7 @@ def page_home():
              "index.html", og="pen-trio.jpg")
     p += pre() + DEFS + nav("index.html")
     p += f'''<div class="hero">
-<div class="hstack"></div><img class="hart pen" src="../a/pen-single.jpg" alt="" aria-hidden="true"><div class="veil"></div><canvas id="field"></canvas><div class="sweep"></div>
+<div class="hstack"></div><img class="hart pen" src="../a/pen-hero.jpg" alt="" aria-hidden="true"><div class="veil"></div><canvas id="field"></canvas><div class="sweep"></div>
 <div class="wrap"><div class="hero-in">
 <div class="badge"><span class="dot"></span>Physician Use Only &#183; United States</div>
 <div class="markrow">{MARK.format(s=104)}</div>
@@ -411,7 +410,70 @@ def page_packaging():
     p += final("Samples Available", "Let&#8217;s put a pen<br>in your hand.", "Samples of both tiers are available to verified physician accounts, filled or unfilled, in the presentation box.")
     return p + FOOTER
 
-PAGES = {"index.html": page_home, "the-pen.html": page_pen, "portfolio.html": page_portfolio,
+
+# ───────────────────────────── FACTS ─────────────────────────────
+def page_facts():
+    p = head("Facts — May a 503A Pharmacy Fill Cartridges and Dispense Them in Pens? | Med Plug RX Peptides",
+             "A regulatory reference on container-closure format for compounded sterile preparations: what Section 503A actually conditions, why a cartridge-loaded pen is not a prefilled autoinjector, and how cartridge fill-finish is done under USP 797.",
+             "facts.html", og="pen-hero.jpg")
+    p += pre() + DEFS + nav("facts.html")
+    p += hero_short("pen-wet.jpg", "Regulatory Reference", "May a 503A pharmacy fill cartridges<br>and dispense them in pens?", "Container-Closure Format &#183; Compounded Sterile Preparations")
+    p += f'''<section><div class="wrap"><div class="psplit">
+<div><div class="eyebrow">Short Answer</div><h2 class="serif">Yes.</h2>
+<p>Section 503A restricts <b>who</b> may compound, <b>which substances</b>, and <b>under what conditions</b>. It does not restrict container-closure format. Nothing in the statute or in USP &lt;797&gt; limits a compounded sterile preparation to a vial.</p>
+<p>The confusion comes from conflating a cartridge-loaded pen with a prefilled autoinjector &#8212; two different regulatory objects.</p></div>
+<div><div class="chiplab">01 &#183; What Section 503A actually conditions</div>
+{kv([("Who","Compounding by a licensed pharmacist or physician, in a state-licensed pharmacy"),("Why","Pursuant to a valid patient-specific prescription"),("What","Bulk drug substances meeting the statutory criteria &#8212; a USP or NF monograph, the FDA bulks list, or a component of an approved drug &#8212; accompanied by a certificate of analysis"),("Not a copy","Not essentially a copy of a commercially available drug"),("Standards","Compliance with applicable USP chapters, including &lt;797&gt; for sterile preparations")])}
+<p class="fine">None of these conditions concerns container-closure format. There is no provision restricting compounded sterile preparations to vials, and none excluding cartridges.</p></div>
+</div></div></section>'''
+    p += f'''<section style="padding-top:0"><div class="wrap">{shead("02 &#183; The Distinction", "Three configurations.<br>Three different answers.", "FDA&#8217;s guidance on pen, jet and related injectors treats configuration as determinative. Objections to compounding &#8220;into pens&#8221; almost always describe the second row. A cartridge-loaded pen is the first.")}
+<div class="tblwrap"><table class="tbl cmp"><thead><tr><th>Configuration</th><th class="mp">Regulatory treatment</th></tr></thead><tbody>
+<tr class="brand"><td>General-use, cartridge-loaded pen</td><td class="mp">Device cleared on its own. Class II under 21 CFR 880.5860 or 880.6920. Drug is a separate product; the patient loads a cartridge. <b>This is the format in question.</b></td></tr>
+<tr><td>Prefilled autoinjector</td><td>Combination product. Drug sealed in at manufacture, device discarded with it. Requires an NDA or BLA. A compounder cannot create this.</td></tr>
+<tr><td>Co-packaged</td><td>Application-holder activity. Drug and device marketed together under one application.</td></tr>
+</tbody></table></div></div></section>'''
+    p += bleed("pen-hero.jpg", "03 &#183; The Cartridge", "A cartridge is packaging,<br>not a device.", "An ISO 11608-3 / ISO 13926 3 mL cartridge is a container-closure system &#8212; vial and syringe functions in a single piece of pharmaceutical packaging. Compounders already dispense in prefilled syringes; selecting a cartridge is the same category of decision. The pen body is a separate, durable, non-sterile, single-patient device the pharmacy does not manufacture.", imgcls="shiftr")
+    p += f'''<section><div class="wrap"><div class="psplit">
+<div><div class="eyebrow">04 &#183; How It Is Done</div><h2 class="serif">Eight steps,<br>one cleanroom.</h2>
+<p>Container-closure selection is governed by USP &lt;797&gt; on the same terms as any other &#8212; sterility assurance, closure integrity, and beyond-use dating.</p></div>
+<div class="steps" style="grid-template-columns:1fr"><div class="pen"><ol>
+<li>Compound from bulk API and diluent to the prescription.</li>
+<li>Sterilizing filtration through a 0.22 &#181;m membrane.</li>
+<li>Fill the empty sterile glass cartridge from the bottom, using a precision syringe or peristaltic pump with sterile disposable tubing.</li>
+<li>Mechanically insert the rubber plunger to seal the cartridge.</li>
+<li>All of the above within an ISO 5 laminar flow hood or barrier isolator inside a certified cleanroom.</li>
+<li>Seat the sealed cartridge in a compatible pen shell.</li>
+<li>Overfill to account for dead space in the mechanism and needle, so the final dose is not short.</li>
+<li>Inspect for air and cracks; label with patient name, directions and BUD.</li></ol></div></div>
+</div></div></section>'''
+    p += f'''<section style="padding-top:0"><div class="wrap">{shead("05 &#183; Established Practice", "Equipment lines are not built<br>for a market that cannot exist.")}
+<div class="trio">
+<div class="tcard rv"><div class="tn serif">I</div><h3 class="serif">Equipment exists for this</h3><p>Vendors build benchtop, semi-automated cartridge fill-finish systems designed for cleanroom use and marketed to 503A operations, including published material on 503A peptide fill-finish readiness.</p></div>
+<div class="tcard rv" data-d="1"><div class="tn serif">II</div><h3 class="serif">Cleared pens are marketed to compounders</h3><p>A US manufacturer holds 510(k) clearance for both a reusable and a disposable cartridge pen and markets them explicitly to 503A and 503B pharmacies, selling ready-to-use 3 mL cartridges alongside them.</p></div>
+<div class="tcard rv" data-d="2"><div class="tn serif">III</div><h3 class="serif">FDA contemplates the category</h3><p>The general-use injector is a standing device classification premised on the drug being supplied separately &#8212; a configuration that only makes sense if someone other than the device maker fills the cartridge.</p></div>
+</div></div></section>'''
+    p += f'''<section style="padding-top:0"><div class="wrap"><div class="psplit">
+<div><div class="eyebrow">06 &#183; Where The Myth Comes From</div><h2 class="serif">Not the law.<br>The plant.</h2>
+<p>A vial line is not a cartridge line. Cartridges are filled bottom-up and generally require vacuum stoppering to clear air from behind the stopper after filling. Cartridge closure-integrity testing differs from vial methods and needs its own validation.</p>
+<p><b>A pharmacy without that tooling correctly says &#8220;we can&#8217;t do that&#8221;</b> &#8212; a true statement about its own capability that is then restated as a rule about compounding.</p></div>
+<div><div class="chiplab">07 &#183; It works at either scale</div>
+{kv([("Benchtop &#183; small batch","Semi-automated cleanroom fill-finish equipment sized for small runs. Capability without committing to a production line."),("High throughput &#183; 50-state volume","These operations already hold filling capital, engineering and validation staff. The question is adding cartridge tooling and validation &#8212; not whether the format is permitted.")])}
+<p class="fine">The legal analysis is identical at either scale. Only the equipment decision changes.</p></div>
+</div></div></section>'''
+    p += f'''<section style="padding-top:0"><div class="wrap">{shead("08 &#183; What This Does Not Address", "One question answered.<br>Four left to your counsel.", "This reference answers whether the cartridge-and-pen format is available to a 503A. It does not answer the following.")}
+<div class="trio quad">
+<div class="tcard rv"><div class="tn serif">A</div><h3 class="serif">Substance eligibility</h3><p>Whether a given molecule may be compounded at all is separate, and governed by the bulks lists, monographs and the essentially-a-copy provisions.</p></div>
+<div class="tcard rv" data-d="1"><div class="tn serif">B</div><h3 class="serif">Device marketing status</h3><p>Any pen used must itself be lawfully marketable in the United States. Format permission is not device permission.</p></div>
+<div class="tcard rv" data-d="2"><div class="tn serif">C</div><h3 class="serif">State boards</h3><p>Boards of pharmacy set and inspect against their own requirements, which vary.</p></div>
+<div class="tcard rv" data-d="3"><div class="tn serif">D</div><h3 class="serif">Dating</h3><p>Format does not extend a beyond-use date. BUD is assigned under USP &lt;797&gt; and supporting data as with any other preparation.</p></div>
+</div>
+<div class="panel quote" style="margin-top:56px"><div class="src">Regulatory reference &#183; not legal advice</div><div class="q" style="font-size:clamp(18px,2vw,24px)">Prepared as a regulatory reference, not as legal advice. Confirm with counsel and with your board of pharmacy before changing dispensing format.</div></div>
+</div></section>'''
+    p += MARQ_CERT
+    p += final("Documentation On NDA", "Read the file<br>before you order.", "The certification package, manufacturer identity and the independent laboratory report are released to verified physician accounts under NDA.", a2=("the-pen.html", "See The Pen"))
+    return p + FOOTER
+
+PAGES = {"index.html": page_home, "facts.html": page_facts, "the-pen.html": page_pen, "portfolio.html": page_portfolio,
          "manufacturing.html": page_manufacturing, "packaging.html": page_packaging}
 
 if __name__ == "__main__":
