@@ -12,6 +12,22 @@
     {
       "source": "/coajungmoney",
       "destination": "/coajungmoney.html"
+    },
+    {
+      "source": "/peptides/the-pen",
+      "destination": "/peptides/the-pen.html"
+    },
+    {
+      "source": "/peptides/portfolio",
+      "destination": "/peptides/portfolio.html"
+    },
+    {
+      "source": "/peptides/manufacturing",
+      "destination": "/peptides/manufacturing.html"
+    },
+    {
+      "source": "/peptides/packaging",
+      "destination": "/peptides/packaging.html"
     }
   ],
   "redirects": [
