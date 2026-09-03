@@ -686,3 +686,29 @@ h1.shim,h2.shim,.shead h2.shim,.bleed h2.shim{
 .doc a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
 .doc .eff{font-size:12.5px;letter-spacing:.18em;text-transform:uppercase;color:#8E8880;margin-bottom:40px}
 .doc strong{color:var(--bone);font-weight:500}
+
+/* ═══ division bar: Regenerative Medicine  |  Peptides — the first thing on every page ═══ */
+nav{display:flex;flex-direction:column}
+.divbar{display:flex;align-items:center;justify-content:center;gap:34px;height:64px;
+  border-bottom:1px solid rgba(201,168,96,.16);background:rgba(0,0,0,.55);backdrop-filter:blur(14px)}
+nav.on .divbar{background:rgba(0,0,0,.94)}
+.divbar a{position:relative;text-decoration:none;color:#9C968D;padding:8px 2px;
+  font-family:Didot,"Bodoni 72","Playfair Display",Georgia,serif;font-size:22px;letter-spacing:.08em;line-height:1;
+  white-space:nowrap;transition:color .35s}
+.divbar a::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;background:var(--gold);
+  transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.8,.2,1)}
+.divbar a:hover{color:#F4F1EB}
+.divbar a.on{color:#F4F1EB}.divbar a.on::after,.divbar a:hover::after{transform:scaleX(1)}
+.divbar .dv{width:1px;height:26px;background:rgba(201,168,96,.45)}
+nav .wrap{gap:18px}
+nav ul{gap:24px}
+nav a.lk{white-space:nowrap}
+nav .btn{white-space:nowrap;padding:14px 22px;letter-spacing:.26em;text-indent:.26em;flex:0 0 auto}
+@media(max-width:1100px){ nav ul{gap:18px} nav a.lk{font-size:9px;letter-spacing:.22em} nav .btn{padding:13px 16px;letter-spacing:.2em;text-indent:.2em} }
+@media(max-width:960px){ nav ul{inset:auto 0 auto 0;top:156px;transform:translateY(calc(-100% - 170px))} }
+nav>.wrap{width:100%}
+@media(max-width:600px){ .divbar{height:56px;gap:20px} .divbar a{font-size:17px;letter-spacing:.05em} .divbar .dv{height:20px} }
+/* the fixed header is 64px taller now — push hero copy down to match */
+.hero-in{padding-top:196px}
+@media(min-width:1040px){ .hero-in{padding-top:204px!important} }
+@media(max-width:1039px){ .hero:not(.short) .hero-in{padding-top:182px!important} .hero.short .hero-in{padding-top:184px!important} }
