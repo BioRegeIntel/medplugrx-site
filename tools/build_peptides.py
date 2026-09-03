@@ -42,6 +42,20 @@ MENU = [("the-pen.html", "The Pen"), ("portfolio.html", "Portfolio"),
 SPLIT_FULL = '<section class="divsplit" aria-label="Choose a division"><a class="dp reg" href="../index.html"><img src="../a/dna-helix.jpg" alt="" aria-hidden="true"><span class="tx"><span class="dk">Division 01</span><span class="dl">Regenerative Medicine</span><span class="dd">Umbilical-derived exosome and cellular preparations, counted and characterized per lot, supplied to a closed physician register.</span><span class="go">Enter Regenerative Medicine</span></span></a><a class="dp pep on" href="index.html"><img src="../a/pen-hero.jpg" alt="" aria-hidden="true"><span class="tx"><span class="dk">Division 02</span><span class="dl">Peptides</span><span class="dd">Seventy-three pharmaceutical-manufactured peptides, pre-filled in a certified injector pen. No vial, no reconstitution.</span><span class="go">Enter Peptides</span></span></a></section>\n'
 SPLIT_SHORT = '<section class="divsplit short" aria-label="Choose a division"><a class="dp reg" href="../index.html"><img src="../a/dna-helix.jpg" alt="" aria-hidden="true"><span class="tx"><span class="dk">Division 01</span><span class="dl">Regenerative Medicine</span><span class="dd">Umbilical-derived exosome and cellular preparations, counted and characterized per lot, supplied to a closed physician register.</span><span class="go">Enter Regenerative Medicine</span></span></a><a class="dp pep on" href="index.html"><img src="../a/pen-hero.jpg" alt="" aria-hidden="true"><span class="tx"><span class="dk">Division 02</span><span class="dl">Peptides</span><span class="dd">Seventy-three pharmaceutical-manufactured peptides, pre-filled in a certified injector pen. No vial, no reconstitution.</span><span class="go">Enter Peptides</span></span></a></section>\n'
 
+
+GHOSTS = ["Peptides &#183; Pen &#183; Portfolio &#183; Fill &#183; ", "0.01 mL per click &#183; Seventy-three &#183; Zero failures &#183; ", "Measured, not claimed &#183; Licensed manufacture &#183; ", "Metal &#183; Molded &#183; Certified &#183; Pre-filled &#183; "]
+_gi = [0]
+def lux(extra="", kind="bfield", photo=None):
+    """Opens a textured section: live gold field + drifting ghost type behind the copy."""
+    _gi[0] += 1
+    words = GHOSTS[_gi[0] % len(GHOSTS)] * 3
+    cv = '<canvas class="bfield dense"></canvas>' if kind == "bfield" else '<canvas class="gflow"></canvas>'
+    img = f'<img class="tex" src="../a/{photo}" alt="" aria-hidden="true">' if photo else ''
+    rev = ' rev' if _gi[0] % 2 else ''
+    cls = "lux photo" if photo else "lux"
+    style = ' style="%s"' % extra if extra else ""
+    return '<section class="%s"%s>%s%s<div class="ghost%s" aria-hidden="true"><span>%s</span></div>' % (cls, style, img, cv, rev, words)
+
 def nav(active):
     items = "".join(
         f'<li><a class="lk{" act" if f == active else ""}" href="{f}">{t}</a></li>' for f, t in MENU)
@@ -115,7 +129,7 @@ def bleed(img, eyebrow, h2, p, cls="", imgcls=""):
 '''
 
 def final(eyebrow, h2, p, a1=("../access.html", "Request Physician Account"), a2=("../access.html", "Request A Sample")):
-    return f'''<section class="final"><div class="wrap">
+    return f'''<section class="final lux"><canvas class="gflow"></canvas><div class="wrap">
 <div style="display:flex;justify-content:center;margin-bottom:10px">{MARK.format(s=60)}</div>
 <div class="eyebrow rv">{eyebrow}</div>
 <h2 class="serif shim rv" data-d="1">{h2}</h2>
@@ -172,7 +186,7 @@ def page_home():
 <div class="stat rv lit" data-d="3"><div class="n serif shim">0</div><div class="l">Preparation steps at the patient end</div></div>
 </div></div>'''
     # the collection
-    p += f'''<section><div class="wrap">{shead("The Division", "Pen. Portfolio. Fill.", "Three things have to be right at once: the device, the compound, and the facility that put one inside the other. Each is documented on its own page.")}
+    p += lux() + f'''<div class="wrap">{shead("The Division", "Pen. Portfolio. Fill.", "Three things have to be right at once: the device, the compound, and the facility that put one inside the other. Each is documented on its own page.")}
 <div class="prods">
 <a class="prod tilt rv" href="the-pen.html"><div class="ph"><img src="../a/pen-trio.jpg" alt="" loading="lazy"></div>
 <div class="body"><div class="tag">01 &#183; The Delivery Device</div><h3 class="serif">The Pen</h3><div class="type">Metal Reusable &#183; Molded Disposable</div>
@@ -186,7 +200,7 @@ def page_home():
 </div></div></section>'''
     p += bleed("pep-couple.jpg", "The Inflection Point", "Every category that can<br>move to a pen, has.",
                "Insulin took two decades. GLP-1 took five &#8212; in front of the same patients now asking about peptides. They have already held a pen. Reconstitution survives here for one reason: the supply chain behind it was never pharmaceutical. That has changed.", imgcls="shiftr headroom")
-    p += f'''<section><div class="wrap">{shead("Timing", "The advantage is temporary.<br>That is what makes it worth taking.", "Format transitions reward the earliest mover, not the best one. For a defined period you are not competing on price &#8212; you are offering something competitors cannot source.")}
+    p += lux(kind="gflow") + f'''<div class="wrap">{shead("Timing", "The advantage is temporary.<br>That is what makes it worth taking.", "Format transitions reward the earliest mover, not the best one. For a defined period you are not competing on price &#8212; you are offering something competitors cannot source.")}
 <div class="trio quad">
 <div class="tcard rv"><div class="tn serif">I</div><h3 class="serif">Price Insulation</h3><p>Compete on experience while the format is scarce. Sterile cartridge filling, closure integrity validation and dose accuracy testing are not capabilities a compounding operation adds quickly.</p></div>
 <div class="tcard rv" data-d="1"><div class="tn serif">II</div><h3 class="serif">Retention</h3><p>Reorder behavior attaches to the delivery, not the compound. A patient who has dialed a dose does not go back to drawing one.</p></div>
@@ -194,7 +208,7 @@ def page_home():
 <div class="tcard rv" data-d="3"><div class="tn serif">IV</div><h3 class="serif">Authority</h3><p>First mover is remembered as the name that introduced it. The constraint is upstream, and it is already solved.</p></div>
 </div></div></section>'''
     p += MARQ_PEP
-    p += f'''<section><div class="wrap"><div class="psplit">
+    p += lux() + f'''<div class="wrap"><div class="psplit">
 <div><div class="eyebrow">The Patient End</div><h2 class="serif">Six steps to two.</h2>
 <p>Attrition concentrates at the first self-administration and the first reorder. Both are preparation events. Remove the preparation and you remove the moment the patient decides this is too much.</p>
 <p><b>No measurement. No arithmetic.</b> No judgment about whether the solution looks properly mixed.</p>
@@ -204,14 +218,14 @@ def page_home():
 <div class="pen"><h4>From a pen</h4><ol><li>Fit needle tip</li><li>Dial dose, administer, discard tip</li></ol></div>
 </div></div></div></section>'''
     p += bleed("pep-gym.jpg", "The Field", "Built Around<br>Healthspan", "The physicians on our register are building longevity, aesthetic and metabolic practice around characterized compounds. What we owe them is a supply that is documented, consistent and never substituted.", imgcls="subj-l")
-    p += f'''<section><div class="wrap"><div class="split">
+    p += lux() + f'''<div class="wrap"><div class="split">
 <div class="imgbox rv"><img src="../a/pep-yacht.jpg" alt="" loading="lazy"></div>
 <div><div class="eyebrow">The Patient</div><h2 class="serif">They have already<br>held a pen.</h2>
 <p>The patients now asking about peptides are the same patients who dialed a GLP-1 dose last year. The format they expect is the one they already know; anything else reads as a step backward.</p>
 <p>A pen is an object patients describe to friends. A vial is not.</p>
 <div class="cta" style="justify-content:flex-start;margin-top:26px"><a href="portfolio.html" class="btn">See The Portfolio</a></div></div>
 </div></div></section>'''
-    p += f'''<section><div class="wrap">{shead("Allocation", "Supplied By Register,<br>Not By Volume", "Accounts are verified against state licensure before a single pen moves. We do not sell to consumers, we do not list on marketplaces, and we do not discount to win an order.")}
+    p += lux(photo="pep-face.jpg") + f'''<div class="wrap">{shead("Allocation", "Supplied By Register,<br>Not By Volume", "Accounts are verified against state licensure before a single pen moves. We do not sell to consumers, we do not list on marketplaces, and we do not discount to win an order.")}
 <div class="trio">
 <div class="tcard rv"><div class="tn serif">01</div><h3 class="serif">Metabolic &amp; Longevity</h3><div class="type">GLP-1 &#183; Healthspan Programs</div><p>For programs built around metabolic and cellular health, directed entirely by the physician.</p></div>
 <div class="tcard rv" data-d="1"><div class="tn serif">02</div><h3 class="serif">Aesthetic &amp; Regenerative</h3><div class="type">Skin, Repair &amp; Recovery</div><p>For the practices where the result is visible, photographed and referred.</p></div>
@@ -234,7 +248,7 @@ def page_pen():
 <div class="stat rv lit" data-d="2"><div class="n serif shim">3<span style="font-size:.5em"> mL</span></div><div class="l">ISO 11608-2 cartridge</div></div>
 <div class="stat rv lit" data-d="3"><div class="n serif shim">60 / 0</div><div class="l">Measurements &#183; failures</div></div>
 </div></div>'''
-    p += f'''<section><div class="wrap">{shead("The Object", "Equipment, not medical supply.", "No other supplier in this channel offers a metal reusable and a plastic disposable on the same mechanism. Same needle, same dosing, no retraining.")}
+    p += lux(photo="pen-wet.jpg") + f'''<div class="wrap">{shead("The Object", "Equipment, not medical supply.", "No other supplier in this channel offers a metal reusable and a plastic disposable on the same mechanism. Same needle, same dosing, no retraining.")}
 <div class="tiers">
 <div class="tier rv"><h3 class="serif">Reusable, metal-bodied</h3><div class="lab">Enterprise Tier</div>
 {kv([("Device type","Multi-use, replaceable cartridge"),("Body","Machined metal, five finishes"),("Maximum dose","80 units"),("Cartridge","Replaceable; patient keeps the device"),("Length &#183; diameter","173.9 mm &#183; 17.2 mm"),("Needle-hub diameter","14.6 mm"),("Dose window","Transparent holder, volume visible"),("Trigger force","20 N maximum")])}</div>
@@ -246,7 +260,7 @@ def page_pen():
 <p class="fine">Plastic reads as disposable. A weighted metal body reads as equipment, and patients treat it accordingly. Five finishes in production: allocate one per protocol and the commonest at-home error &#8212; the wrong device &#8212; disappears.</p>
 </div></section>'''
     p += bleed("pep-tux.jpg", "The Object", "Weight is<br>a signal.", "A pen that feels like equipment is kept, charged with a fresh cartridge and reordered. A pen that feels like packaging is thrown away with the box.", imgcls="shiftr")
-    p += f'''<section><div class="wrap">{shead("Independent Verification", "Sixty measurements.<br>Zero failures.", "Accredited third-party laboratory, ISO 11608-1:2022 and ISO 11608-2:2022. Tolerance interval at k = 3.154.")}
+    p += lux() + f'''<div class="wrap">{shead("Independent Verification", "Sixty measurements.<br>Zero failures.", "Accredited third-party laboratory, ISO 11608-1:2022 and ISO 11608-2:2022. Tolerance interval at k = 3.154.")}
 <div class="tblwrap"><table class="tbl"><thead><tr><th>Target volume</th><th>Units</th><th>Measured average</th><th>Std deviation</th><th>Required range</th><th>Result</th></tr></thead><tbody>
 <tr><td>0.01 mL</td><td>20</td><td>0.0113 mL</td><td>0.0020 mL</td><td>0.000 &#8211; 0.020</td><td class="pass">Pass</td></tr>
 <tr><td>0.30 mL</td><td>20</td><td>0.2979 mL</td><td>0.0026 mL</td><td>0.285 &#8211; 0.315</td><td class="pass">Pass</td></tr>
@@ -259,7 +273,7 @@ def page_pen():
 </div>
 <p class="fine">Full 56-page report under NDA. Report number and laboratory identity are released to verified physician accounts on request.</p>
 </div></section>'''
-    p += f'''<section style="padding-top:0"><div class="wrap"><div class="psplit">
+    p += lux("padding-top:0") + f'''<div class="wrap"><div class="psplit">
 <div><div class="eyebrow">Needle Integrity</div><h2 class="serif">One pass through rubber.<br>Damage you cannot see.</h2>
 <p>Under electron microscopy, a needle that did nothing but pass through a vial stopper showed <b>5.46% tip deformation</b>. On inspection, the injectors saw none.</p>
 <p>A pen needle never meets a stopper.</p>
@@ -273,7 +287,7 @@ def page_pen():
 <div class="panel quote"><div class="src">The literature&#8217;s own conclusion</div><div class="q">Avoid piercing the stopper altogether.</div></div>
 <p class="fine" style="margin-top:22px">Akintilo et al., Journal of Cosmetic Dermatology, 2025 &#8212; SEM of 45 needle tips. Coring incidence from 150 stopper punctures, 18&#8211;21G, rising to 56% at 18G and 45&#176;. Illustrations schematic.</p></div>
 </div></div></section>'''
-    p += f'''<section style="padding-top:0"><div class="wrap"><div class="psplit">
+    p += lux("padding-top:0") + f'''<div class="wrap"><div class="psplit">
 <div><div class="eyebrow">Photostability</div><h2 class="serif">The degradation pathway nobody accounts for.</h2>
 <p>Stability talk in this channel is all thermal. Light is treated as a labelling formality. Residues absorbing near-UV &#8212; tryptophan, tyrosine, phenylalanine, cysteine &#8212; oxidise directly, cascading into methionine and histidine.</p>
 <p><b>And it cannot be modelled.</b> Thermal decay follows Arrhenius. Photostability has no accepted predictive equivalent, and damage can occur within hours.</p>
@@ -282,7 +296,7 @@ def page_pen():
 {kv([("Higher","GLP-1 agonists, MOTS-c, melanocortins, glutathione, NAD+"),("Lower","BPC-157, KPV, GHK-Cu &#8212; no aromatic or sulfur residues"),("ICH Q1B","1.2 million lux-hours visible, 200 W&#183;h/m&#178; near-UV")])}
 <p class="fine">Photo-oxidation pathways per Kerwin &amp; Remmele and subsequent forced-degradation literature. Exposure conditions per ICH Q1B.</p></div>
 </div></div></section>'''
-    p += f'''<section style="padding-top:0"><div class="wrap">{shead("Regulatory Standing", "Certified as a medical device,<br>not sold as an accessory.")}
+    p += lux("padding-top:0") + f'''<div class="wrap">{shead("Regulatory Standing", "Certified as a medical device,<br>not sold as an accessory.")}
 <div class="trio">
 <div class="tcard rv"><div class="tn serif">ISO</div><h3 class="serif">ISO 13485:2016</h3><p>Quality management system certification for medical devices, held by the device manufacturer. Scope covers the development and manufacture of pen injectors and disposable sterile injection needles.</p></div>
 <div class="tcard rv" data-d="1"><div class="tn serif">EU</div><h3 class="serif">EU MDR 2017/745</h3><p>Certified as a Class I device with measuring function, assessed under Annex IX. Coverage extends to cartridge syringes and pen injectors.</p></div>
@@ -315,14 +329,14 @@ def page_portfolio():
     for i, (name, names) in enumerate(FAMS):
         joined = "<i>&#183;</i>".join(names)
         fam_html += f'<div class="fam rv"><div class="fh"><div class="eyebrow">{name}</div><div class="ct serif">{len(names):02d}</div></div><div class="names">{joined}</div></div>'
-    p += f'''<section><div class="wrap">{shead("The Range", "Every compound, one fill standard.", "Each peptide is synthesised, filled, lyophilised and QA-released under the same national drug manufacturing license, and ships with a certificate of analysis.")}
+    p += lux(photo="pep-vanity.jpg") + f'''<div class="wrap">{shead("The Range", "Every compound, one fill standard.", "Each peptide is synthesised, filled, lyophilised and QA-released under the same national drug manufacturing license, and ships with a certificate of analysis.")}
 <div class="fams">{fam_html}</div>
 <div class="panel" style="margin-top:56px"><h3 class="serif">Combinations</h3><p>Two compounds in a single 3 mL cartridge, one administration. Current SKUs include BPC-157 with TB-500, CJC-1295 with Ipamorelin, and PT-141 with Oxytocin.</p></div>
 <p class="fine">Compounding eligibility varies by substance and is confirmed against current FDA bulk drug substance lists at the point of order. Listing here is not a representation that any substance is eligible for any particular use.</p>
 </div></section>'''
     p += MARQ_PEP
     p += bleed("pep-face.jpg", "The Standard", "Measured,<br>Not Claimed", "The figure on the certificate is the figure measured on that lot &#8212; purity, assay, endotoxin and sterility &#8212; never averaged from a batch. If the record does not match the cartridge, we do not take the lot.", imgcls="shiftr")
-    p += f'''<section><div class="wrap">{shead("Documentation", "Certificates of analysis,<br>archived by product.", "Every lot released to a physician account carries its certificate. The archives are public; the manufacturer identity behind them is released on NDA.")}
+    p += lux(kind="gflow") + f'''<div class="wrap">{shead("Documentation", "Certificates of analysis,<br>archived by product.", "Every lot released to a physician account carries its certificate. The archives are public; the manufacturer identity behind them is released on NDA.")}
 <div class="trio">
 <a class="tcard rv" href="../coamedplug" style="text-decoration:none;color:inherit;display:block"><div class="tn serif">COA</div><h3 class="serif">Peptide Archive</h3><div class="type">Lyophilised &amp; Pre-Mixed</div><p>Per-lot certificates for the peptide range.</p></a>
 <a class="tcard rv" data-d="1" href="../coapens" style="text-decoration:none;color:inherit;display:block"><div class="tn serif">COA</div><h3 class="serif">Pen Archive</h3><div class="type">Pre-Filled Cartridges</div><p>Per-lot certificates for peptides supplied in the injector pen.</p></a>
@@ -349,7 +363,7 @@ def page_manufacturing():
 <div class="stat rv lit" data-d="2"><div class="n serif shim">99%+</div><div class="l">Purity verified per lot</div></div>
 <div class="stat rv lit" data-d="3"><div class="n serif shim">2&#8211;8<span style="font-size:.5em"> &#176;C</span></div><div class="l">Cold chain, data-logged</div></div>
 </div></div>'''
-    p += f'''<section><div class="wrap">{shead("The Fill", "Three tiers supply this market.<br>Only one is a pharmaceutical manufacturer.")}
+    p += lux(photo="iso5.jpg") + f'''<div class="wrap">{shead("The Fill", "Three tiers supply this market.<br>Only one is a pharmaceutical manufacturer.")}
 <div class="trio">
 <div class="tcard rv"><div class="tn serif">Tier One</div><h3 class="serif">Research Use Only</h3><p>Not for human use. No drug license, no aseptic validation, no batch release authority. Purity is supplier-asserted.</p></div>
 <div class="tcard rv" data-d="1"><div class="tn serif">Tier Two</div><h3 class="serif">cGMP Contract</h3><p>Good manufacturing practice, often for a narrow scope. Frequently fill-and-finish rather than end-to-end.</p></div>
@@ -357,7 +371,7 @@ def page_manufacturing():
 </div>
 <p class="fine">Most competing supply is Tier One at worst and Tier Two at best. <a href="#process">Batch release is a legal constraint, not a policy</a> &#8212; product without it may not enter shipment.</p>
 </div></section>'''
-    p += f'''<section id="process" style="padding-top:0"><div class="wrap">{shead("Process", "Twenty-three steps.<br>One roof.", "Gold marks the steps where a fill-and-finish operation would be receiving material rather than making it.")}
+    p += lux("padding-top:0").replace('<section class="lux"','<section id="process" class="lux"') + f'''<div class="wrap">{shead("Process", "Twenty-three steps.<br>One roof.", "Gold marks the steps where a fill-and-finish operation would be receiving material rather than making it.")}
 {chips(PROCESS, gold=GOLD)}
 <div class="trio" style="margin-top:64px">
 <div class="tcard rv"><div class="tn serif">Grade A / ISO 5</div><p>Aseptic filling under HEPA filtration, unidirectional airflow and barrier isolators.</p></div>
@@ -365,14 +379,14 @@ def page_manufacturing():
 <div class="tcard rv" data-d="2"><div class="tn serif">99%+ per lot</div><p>Purity verified per lot, with a certificate of analysis supplied.</p></div>
 </div></div></section>'''
     p += bleed("cryo-store.jpg", "The Standard", "Nothing ships<br>unreleased.", "A licensed manufacturer cannot release a batch on a policy or a promise. Release is a legal act, signed by qualified persons against the tested record of that lot.")
-    p += f'''<section><div class="wrap"><div class="psplit">
+    p += lux() + f'''<div class="wrap"><div class="psplit">
 <div><div class="eyebrow">Chain Of Custody</div><h2 class="serif">Where each stage happens, stated plainly.</h2>
 <p>Product is examined against specification before it reaches a buyer, not after a complaint. Domestic assembly removes an international leg and cuts custody transfers under temperature control.</p>
 <div class="panel" style="margin-top:30px"><h3 class="serif">Cold chain</h3><p>Premixed liquids ship at 2&#8211;8&#176;C in qualified insulated packaging with data loggers, evaluated routes and defined transport limits.</p></div></div>
 <div>{kv([("API synthesis","Licensed pharmaceutical facility, overseas"),("Sterile drug product","Same facility &#8212; aseptic fill, lyophilization, QA release"),("Device manufacture","ISO 13485 and EU MDR certified manufacturer"),("Inbound inspection","United States",True),("Assembly and finishing","United States",True),("Packaging and dispatch","United States, direct to the buyer",True)])}
 <p class="fine">This site does not represent the finished drug product as manufactured in the United States. Manufacturer identity, address and license numbers are redacted pending NDA.</p></div>
 </div></div></section>'''
-    p += f'''<section style="padding-top:0"><div class="wrap">{shead("Release Testing", "Tested before a batch may ship.")}
+    p += lux("padding-top:0") + f'''<div class="wrap">{shead("Release Testing", "Tested before a batch may ship.")}
 <div class="chiplab">Active ingredient release</div>{chips(API_TESTS)}
 <div class="chiplab">Finished product release</div>{chips(FP_TESTS)}
 <div class="psplit" style="margin-top:64px">
@@ -390,7 +404,7 @@ def page_packaging():
              "packaging.html", og="pep-vanity.jpg")
     p += pre() + DEFS + nav("packaging.html") + SPLIT_SHORT
     p += hero_short("pep-vanity.jpg", "The Presentation", "A retail object,<br>not a dispensing container.", "Presentation &#183; Market Position", extra_cls=" vt")
-    p += f'''<section><div class="wrap"><div class="psplit">
+    p += lux() + f'''<div class="wrap"><div class="psplit">
 <div><div class="eyebrow">The Box</div><h2 class="serif">Wrapped board.<br>Magnetic closure.</h2>
 <p>Rigid book-style box with a magnetic flip lid. Wrapped board, not a folding carton. Instructions print inside the lid; the pen and its needle tips sit in a fitted tray beneath.</p>
 {kv([("Construction","Wrapped board, magnetic closure"),("Inside lid","Three-step instruction panel"),("Tray","Die-cut, seats pen and needle tips"),("Window","72 &#215; 23 mm die-cut, front panel"),("Artwork","Four print versions approved")])}
@@ -398,7 +412,7 @@ def page_packaging():
 <div class="boxfig rv"><img src="../a/pen-box.png" alt="Med Plug RX injector pen presentation box, open, showing the die-cut tray and needle-tip lid" loading="lazy"></div>
 </div></div></section>'''
     p += bleed("pep-couple.jpg", "The Unboxing", "What arrives<br>is the brand.", "The patient never sees the facility, the license or the laboratory report. They see the box, the weight of the pen and the first dose. All three are designed to be described.", imgcls="shiftr headroom")
-    p += f'''<section><div class="wrap">{shead("Market Position", "Against what is<br>currently available.", "Competitor attributes as published on each manufacturer&#8217;s own materials, reviewed August 2026. Pricing is excluded by choice and addressed directly.")}
+    p += lux(photo="pen-stand.jpg") + f'''<div class="wrap">{shead("Market Position", "Against what is<br>currently available.", "Competitor attributes as published on each manufacturer&#8217;s own materials, reviewed August 2026. Pricing is excluded by choice and addressed directly.")}
 <div class="tblwrap"><table class="tbl cmp"><thead><tr><th></th><th class="mp">Med Plug RX</th><th>Cleared device supplier</th><th>Consumer accessory</th></tr></thead><tbody>
 <tr><td class="rk">Body material</td><td class="mp">Metal reusable and molded disposable</td><td>Plastic, including the reusable model</td><td>Aluminum</td></tr>
 <tr><td class="rk">Device tiers</td><td class="mp">Two, one dosing platform</td><td>One</td><td>One</td></tr>
@@ -421,7 +435,7 @@ def page_facts():
              "facts.html", og="pen-hero.jpg")
     p += pre() + DEFS + nav("facts.html") + SPLIT_SHORT
     p += hero_short("pen-wet.jpg", "Regulatory Reference", "May a 503A pharmacy fill cartridges<br>and dispense them in pens?", "Container-Closure Format &#183; Compounded Sterile Preparations")
-    p += f'''<section><div class="wrap"><div class="psplit">
+    p += lux() + f'''<div class="wrap"><div class="psplit">
 <div><div class="eyebrow">Short Answer</div><h2 class="serif">Yes.</h2>
 <p>Section 503A restricts <b>who</b> may compound, <b>which substances</b>, and <b>under what conditions</b>. It does not restrict container-closure format. Nothing in the statute or in USP &lt;797&gt; limits a compounded sterile preparation to a vial.</p>
 <p>The confusion comes from conflating a cartridge-loaded pen with a prefilled autoinjector &#8212; two different regulatory objects.</p></div>
@@ -429,14 +443,14 @@ def page_facts():
 {kv([("Who","Compounding by a licensed pharmacist or physician, in a state-licensed pharmacy"),("Why","Pursuant to a valid patient-specific prescription"),("What","Bulk drug substances meeting the statutory criteria &#8212; a USP or NF monograph, the FDA bulks list, or a component of an approved drug &#8212; accompanied by a certificate of analysis"),("Not a copy","Not essentially a copy of a commercially available drug"),("Standards","Compliance with applicable USP chapters, including &lt;797&gt; for sterile preparations")])}
 <p class="fine">None of these conditions concerns container-closure format. There is no provision restricting compounded sterile preparations to vials, and none excluding cartridges.</p></div>
 </div></div></section>'''
-    p += f'''<section style="padding-top:0"><div class="wrap">{shead("02 &#183; The Distinction", "Three configurations.<br>Three different answers.", "FDA&#8217;s guidance on pen, jet and related injectors treats configuration as determinative. Objections to compounding &#8220;into pens&#8221; almost always describe the second row. A cartridge-loaded pen is the first.")}
+    p += lux("padding-top:0", photo="pen-stand.jpg") + f'''<div class="wrap">{shead("02 &#183; The Distinction", "Three configurations.<br>Three different answers.", "FDA&#8217;s guidance on pen, jet and related injectors treats configuration as determinative. Objections to compounding &#8220;into pens&#8221; almost always describe the second row. A cartridge-loaded pen is the first.")}
 <div class="tblwrap"><table class="tbl cmp"><thead><tr><th>Configuration</th><th class="mp">Regulatory treatment</th></tr></thead><tbody>
 <tr class="brand"><td>General-use, cartridge-loaded pen</td><td class="mp">Device cleared on its own. Class II under 21 CFR 880.5860 or 880.6920. Drug is a separate product; the patient loads a cartridge. <b>This is the format in question.</b></td></tr>
 <tr><td>Prefilled autoinjector</td><td>Combination product. Drug sealed in at manufacture, device discarded with it. Requires an NDA or BLA. A compounder cannot create this.</td></tr>
 <tr><td>Co-packaged</td><td>Application-holder activity. Drug and device marketed together under one application.</td></tr>
 </tbody></table></div></div></section>'''
     p += bleed("pen-hero.jpg", "03 &#183; The Cartridge", "A cartridge is packaging,<br>not a device.", "An ISO 11608-3 / ISO 13926 3 mL cartridge is a container-closure system &#8212; vial and syringe functions in a single piece of pharmaceutical packaging. Compounders already dispense in prefilled syringes; selecting a cartridge is the same category of decision. The pen body is a separate, durable, non-sterile, single-patient device the pharmacy does not manufacture.", imgcls="shiftr")
-    p += f'''<section><div class="wrap"><div class="psplit">
+    p += lux() + f'''<div class="wrap"><div class="psplit">
 <div><div class="eyebrow">04 &#183; How It Is Done</div><h2 class="serif">Eight steps,<br>one cleanroom.</h2>
 <p>Container-closure selection is governed by USP &lt;797&gt; on the same terms as any other &#8212; sterility assurance, closure integrity, and beyond-use dating.</p></div>
 <div class="steps" style="grid-template-columns:1fr"><div class="pen"><ol>
@@ -449,13 +463,13 @@ def page_facts():
 <li>Overfill to account for dead space in the mechanism and needle, so the final dose is not short.</li>
 <li>Inspect for air and cracks; label with patient name, directions and BUD.</li></ol></div></div>
 </div></div></section>'''
-    p += f'''<section style="padding-top:0"><div class="wrap">{shead("05 &#183; Established Practice", "Equipment lines are not built<br>for a market that cannot exist.")}
+    p += lux("padding-top:0") + f'''<div class="wrap">{shead("05 &#183; Established Practice", "Equipment lines are not built<br>for a market that cannot exist.")}
 <div class="trio">
 <div class="tcard rv"><div class="tn serif">I</div><h3 class="serif">Equipment exists for this</h3><p>Vendors build benchtop, semi-automated cartridge fill-finish systems designed for cleanroom use and marketed to 503A operations, including published material on 503A peptide fill-finish readiness.</p></div>
 <div class="tcard rv" data-d="1"><div class="tn serif">II</div><h3 class="serif">Cleared pens are marketed to compounders</h3><p>A US manufacturer holds 510(k) clearance for both a reusable and a disposable cartridge pen and markets them explicitly to 503A and 503B pharmacies, selling ready-to-use 3 mL cartridges alongside them.</p></div>
 <div class="tcard rv" data-d="2"><div class="tn serif">III</div><h3 class="serif">FDA contemplates the category</h3><p>The general-use injector is a standing device classification premised on the drug being supplied separately &#8212; a configuration that only makes sense if someone other than the device maker fills the cartridge.</p></div>
 </div></div></section>'''
-    p += f'''<section style="padding-top:0"><div class="wrap"><div class="psplit">
+    p += lux("padding-top:0") + f'''<div class="wrap"><div class="psplit">
 <div><div class="eyebrow">06 &#183; Where The Myth Comes From</div><h2 class="serif">Not the law.<br>The plant.</h2>
 <p>A vial line is not a cartridge line. Cartridges are filled bottom-up and generally require vacuum stoppering to clear air from behind the stopper after filling. Cartridge closure-integrity testing differs from vial methods and needs its own validation.</p>
 <p><b>A pharmacy without that tooling correctly says &#8220;we can&#8217;t do that&#8221;</b> &#8212; a true statement about its own capability that is then restated as a rule about compounding.</p></div>
@@ -463,7 +477,7 @@ def page_facts():
 {kv([("Benchtop &#183; small batch","Semi-automated cleanroom fill-finish equipment sized for small runs. Capability without committing to a production line."),("High throughput &#183; 50-state volume","These operations already hold filling capital, engineering and validation staff. The question is adding cartridge tooling and validation &#8212; not whether the format is permitted.")])}
 <p class="fine">The legal analysis is identical at either scale. Only the equipment decision changes.</p></div>
 </div></div></section>'''
-    p += f'''<section style="padding-top:0"><div class="wrap">{shead("08 &#183; What This Does Not Address", "One question answered.<br>Four left to your counsel.", "This reference answers whether the cartridge-and-pen format is available to a 503A. It does not answer the following.")}
+    p += lux("padding-top:0") + f'''<div class="wrap">{shead("08 &#183; What This Does Not Address", "One question answered.<br>Four left to your counsel.", "This reference answers whether the cartridge-and-pen format is available to a 503A. It does not answer the following.")}
 <div class="trio quad">
 <div class="tcard rv"><div class="tn serif">A</div><h3 class="serif">Substance eligibility</h3><p>Whether a given molecule may be compounded at all is separate, and governed by the bulks lists, monographs and the essentially-a-copy provisions.</p></div>
 <div class="tcard rv" data-d="1"><div class="tn serif">B</div><h3 class="serif">Device marketing status</h3><p>Any pen used must itself be lawfully marketable in the United States. Format permission is not device permission.</p></div>
