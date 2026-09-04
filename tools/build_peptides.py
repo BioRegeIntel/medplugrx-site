@@ -174,8 +174,8 @@ def page_home():
 <div class="wrap"><div class="hero-in">
 <div class="badge"><span class="dot"></span>Physician Use Only &#183; United States</div>
 <div class="markrow">{MARK.format(s=104)}</div>
-<h1 class="serif"><span class="shim">The vial is the bottleneck.</span></h1>
-<div class="sub">Peptides &#183; Delivery Systems</div>
+<h1 class="serif"><span class="shim">Leave the vial behind.</span></h1>
+<div class="sub">Peptide delivery, re-engineered.</div>
 <p class="lede">Pharmaceutical-manufactured peptides, delivered in a certified injector pen. No reconstitution, no syringe, no arithmetic at the patient end &#8212; the patient selects a dose and the device meters it.</p>
 <div class="cta"><a href="../access.html" class="btn btn-solid">Request Physician Account</a>
 <a href="the-pen.html" class="btn">See The Pen</a></div></div></div>
